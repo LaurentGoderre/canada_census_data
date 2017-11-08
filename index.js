@@ -1,1 +1,1 @@
-module.exports = require("./src/censusData")
+module.exports = require("./src/censusData");

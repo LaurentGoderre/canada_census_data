@@ -9,7 +9,7 @@ function censusData(data) {
 			var point = getDataPoint(data.indexes, ind);
 			return data.data[point];
 		}
-	}
+	};
 }
 
 module.exports = censusData;

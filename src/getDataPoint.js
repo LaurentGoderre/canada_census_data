@@ -16,16 +16,16 @@ function getIndex(indexes, arr) {
 function getDataPoint(indexes, ind) {
   var isIndArray = Array.isArray(ind),
     arr = [],
-    a, p, key, keys;
+    a, p, key;
 
   if ((isIndArray && indexes.length !== ind.length) || typeof ind !== "object")
     return null;
 
   for (a = 0; a < indexes.length; a++) {
     if (isIndArray) {
-      key = ind[a]
+      key = ind[a];
     } else {
-      key = ind[indexes[a].type]
+      key = ind[indexes[a].type];
     }
     p = indexes[a].data.indexOf(key);
 
