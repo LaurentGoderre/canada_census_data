@@ -13,8 +13,12 @@ module.exports = function(grunt) {
 		},
 
 		browserify: {
-  		dist: {
-				options: {},
+			dist: {
+				options: {
+					alias: {
+						'canada_census_data': './index.js'
+					}
+				},
 				files: {
 					"dist/canada_census_data.js": "index.js"
 				}
