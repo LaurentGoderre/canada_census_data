@@ -2,9 +2,6 @@ function getIndex(indexes, arr) {
   var index = 0,
     i, j, t;
 
-  if (arr.length !== indexes.length)
-    throw "Accessor length does not match indexes length";
-
   for (i = 0; i < arr.length; i++){
     t = arr[i];
 
@@ -16,21 +13,29 @@ function getIndex(indexes, arr) {
   return index;
 }
 
-function getDataPoint(indexes, arr) {
-  var ind = [],
-    a, p;
-  if (indexes.length !== arr.length)
+function getDataPoint(indexes, ind) {
+  var isIndArray = Array.isArray(ind),
+    arr = [],
+    a, p, key, keys;
+
+  if ((isIndArray && indexes.length !== ind.length) || typeof ind !== "object")
     return null;
-  for (a = 0; a < arr.length; a++) {
-    p = indexes[a].data.indexOf(arr[a])
-    if (p !== -1) {
-      ind.push(p);
+
+  for (a = 0; a < indexes.length; a++) {
+    if (isIndArray) {
+      key = ind[a]
     } else {
-      return null;
+      key = ind[indexes[a].type]
     }
+    p = indexes[a].data.indexOf(key);
+
+    if (p === -1)
+      return null;
+
+    arr.push(p);
   }
 
-  return getIndex(indexes, ind);
+  return getIndex(indexes, arr);
 }
 
 module.exports = getDataPoint;
