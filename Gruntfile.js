@@ -8,6 +8,15 @@ module.exports = function(grunt) {
 			src: ["src/*.js"]
 		},
 
+    mochaTest: {
+      options: {
+        reporter: "spec",
+      },
+      test: {
+        src: ["test/**/*.js"]
+      }
+    },
+
 		clean: {
 			dist: "dist"
 		},
@@ -16,7 +25,7 @@ module.exports = function(grunt) {
 			dist: {
 				options: {
 					alias: {
-						'canada_census_data': './index.js'
+						"canada_census_data": "./index.js"
 					}
 				},
 				files: {
@@ -38,5 +47,6 @@ module.exports = function(grunt) {
 			}
 		},
 	});
-	grunt.registerTask("default", ["eslint", "clean", "browserify", "uglify"]);
+	grunt.registerTask("test", ["mochaTest", "mochaTest"]);
+	grunt.registerTask("default", ["test", "clean", "browserify", "uglify"]);
 };
